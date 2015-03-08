@@ -8,8 +8,10 @@ var HomeVersion = new keystone.List('HomeVersion', {
 
 keystone.list('Gallery').model.findOne({name: 'Headshots'}).exec(function(err, gallery){
     var opt = [];
-    for(var i = 0; i < gallery.images.length; ++i) {
-      opt += gallery.images[i].url;
+    if(gallery != null) {
+      for(var i = 0; i < gallery.images.length; ++i) {
+        opt += gallery.images[i].url;
+      };
     };
     HomeVersion.add({
       heroImage: { type: Types.Select, options: opt},
